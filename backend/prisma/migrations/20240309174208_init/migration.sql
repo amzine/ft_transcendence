@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "wins" SET DEFAULT 0,
+ALTER COLUMN "lost" SET DEFAULT 0;

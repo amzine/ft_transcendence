@@ -1,0 +1,390 @@
+.Radial-background {
+  margin: auto auto;
+  height: 81vh;
+  display: flex;
+  flex-direction: column;
+  /*background-image: radial-gradient(circle at 50% 0%, rgba(192,69,69,1) 0%, rgba(57,80,127,0.85) 40%, rgba(25,48,49,1) 100%);*/
+}
+.Page-top {
+    height: 20%;
+    overflow: auto;
+}
+
+.Page-mid {
+    margin: auto;
+    height: 60%;
+    overflow: hidden;
+}
+
+/* .Page-foot {
+    /* background-color: black; */
+    /* position: relative;
+  } 
+  */
+
+.bar
+{
+  /* display:flex;
+  justify-content: center; */
+  /* position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0; */
+  /* margin: auto; */
+  /* width: 40px;
+  height: 2px; */
+  /* background: white; */
+  transition: all 0.5s ease-out;
+}
+
+.Page-foot:hover .bar
+{
+  transform: rotateZ(360deg) scale(1);
+  opacity: 0;
+}
+
+.innerFoot
+{
+  display: inline-flex;
+  margin: auto -5%;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s ease;
+}
+
+.Page-foot:hover .innerFoot
+{
+  opacity: 1;
+  transform: scale(1);
+
+}
+
+.Info-card {
+  position: relative;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+  height: 7vh;
+  /*width: calc(177vh * 0.45);*/
+  /*background-image: radial-gradient(circle at 50% -40%, rgb(192,69,69) -180%, rgb(57,80,127) 270%);*/
+  /*border: 2px solid rgb(255, 255, 255);
+  border-radius: 15px;*/
+  /*box-shadow: 0px 0px 5px 5px rgb(80, 200, 255), inset 0px 0px 5px 4px rgb(0, 190, 255);*/
+}
+
+  .Player-left {
+      /* background-color:lawngreen; */
+      width: 50%;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      padding-right: 5%;
+      /*height: 100%;*/
+      /*vertical-align: top;*/
+  }
+
+  .Player-right {
+      /* background-color:ivory; */
+      width: 50%;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 5%;
+      /*height: 100%;*/
+      /*vertical-align: top;*/
+  }
+  
+      .Score {
+          /* background-color: green; */
+          /*margin: 4% auto;*/
+          width: 10%;
+          height: 70%;
+          /*font-size: 4.5vh;*/
+          color: #0cdaff;
+          /*vertical-align: top;*/
+      }
+
+      .Info {
+          /* background-color: orange; */
+          margin: auto;
+          width: 70%;
+          height: 80%;
+          display:flex;
+      }
+
+          .Photo {
+              /* background-color: black; */
+              margin: auto;
+              /*width: 7vh;
+              height: 7vh;*/
+              border: 2px solid #F9F9F9;
+              border-radius: 50%;
+              /* background: #D8D8D8; */
+          }
+
+          .Login {
+              /* background-color: navy; */
+              margin: auto;
+              width: 40%;
+              /*font-size: 2vh;*/
+              color: white;
+              text-overflow: ellipsis;
+              overflow: hidden;
+          }
+
+.Field {
+  position: relative;
+
+  /*
+  position: absolute;
+  left: 0;
+  right: 0; */
+  /* margin: auto; */
+  /* width: 90% !important;
+  height: 95% !important; */
+  /*display: inline-flex;*/
+  /*height: 45vh;
+  width: calc(177vh * 0.45);*/
+  /*background-image: radial-gradient(circle at 50% -40%, rgb(192,69,69) -10%, rgb(57,80,127) 65%, rgb(25,48,49) 184%);*/
+  border: 0px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  /*box-shadow: 0;*/
+  overflow: hidden;
+  }
+
+  .Pad-left {
+      position: absolute;
+      left: 2%;
+      top: 50%;
+      height: 10%;
+      width: 1%;
+      background-color: rgb(255, 255, 255);
+      border: .2vh solid rgb(255, 255, 255);
+      /*box-shadow: 1px 0 2px 2px rgb(93,210,204);*/
+      display: none;
+  }
+
+  .Center-zone {
+      margin: auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+      background-color: #050505;
+     
+      /* background-color:lightseagreen; */
+  }
+  .Center-zone-hard{
+      margin: auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+      background-color: #6d0c05bd;
+    
+    }
+
+      .Middle-line-top {
+          /*margin: auto auto;*/
+          position: absolute;
+          top: 0%;
+          height: calc(50.00% - 4vh);
+          width: 0;
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(255, 255, 255);
+          /*box-shadow: 0px 0px 5px 2px rgb(0, 160, 255);*/
+      }
+
+      .Middle-line-bottom {
+          /*margin: auto auto;*/
+          position: absolute;
+          bottom: 0%;
+          height: calc(50.00% - 4vh);
+          width: 0;
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(255, 255, 255);
+          /*box-shadow: 0px 0px 5px 2px rgb(0, 160, 255);*/
+      }
+      .Center-circle {
+          margin: 0 0;
+          height: 8vh;
+          width: 8vh;
+          border: 1px solid rgb(255, 255, 255);
+          border-radius: 50%;
+          /*box-shadow: 0px 0px 8px 4px rgb(0, 190, 255), inset 0 0px 8px 6px rgb(0, 190, 255);*/
+      }
+
+  .Pad-right {
+      position: absolute;
+      right: 2%;
+      top: 50%;
+      height: 10%;
+      width: 1%;
+      background-color: rgb(255, 255, 255);
+      border: .2vh solid rgb(255, 255, 255);
+      /*box-shadow: 1px 0 2px 2px rgb(93,210,204);*/
+      display: none;
+  }
+  
+      
+  .Ball {
+      position: absolute;
+      left: calc(50% - 1vh);
+      right: 0;
+      top: calc(50% - 1vh);
+      bottom: 0;
+      /*height: 2vh;
+      width: 2vh;*/
+      border-radius: 50%;
+      /*box-shadow: 0 0 5px 4px rgb(143,72,89), inset 0 0 10px 5px rgb(143,72,89);*/
+      background-color: rgb(255, 255, 255);
+      /*box-shadow: 1px 0 2px 2px rgb(255, 255, 255);*/
+      overflow: hidden;
+      display: none;
+  }
+
+/* .Button-msg-zone{ */
+  /* position:absolute; */
+  /* height: 20%;
+  width: 30%;
+  top: 40%;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1; */
+  /* } */
+
+  .Start_button {
+      background-color: Transparent;
+      margin: auto;
+      min-height: 30px;
+      width: 10em;
+      cursor: pointer;
+      border: 1px solid rgb(255, 255, 255);
+      color: white;
+      opacity: 1;
+      height: 2.3em;
+      border-radius: 5px;
+      transition: opacity 1s;
+      display: unset;
+  }
+
+  .Message {
+      margin: auto;
+      font-size: 2.5vh;
+      font-weight: 300;
+      background-color: Transparent;
+      color: white;
+      display: none;
+  }
+
+.Button {
+  /* background-color: tomato; */
+  margin: auto;
+  height: 50%;
+  padding: 18px;
+  font-size: 2.5vh;
+  font-weight: 300;
+  color: white;
+  text-decoration: rgba(25,48,49,1) underline;
+  transition: all 0.7s cubic-bezier(.45,1.71,.41,.97);
+  cursor: pointer;
+  user-select: none;
+}
+
+.Button:hover {
+  transform: scale(1.2);
+}
+
+.Button:active
+{
+  transform: scale(0.9);
+  transition: all 0.2s cubic-bezier(.45,1.71,.41,.97);
+}
+
+
+
+.modal-settings
+{
+  background-color: white;
+  position:absolute;
+  height: 20%;
+  width: 30%;
+  top: 40%;
+  margin-left: 35%;
+  z-index: 1;
+}
+
+.closeButton{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.modal-text{
+  position:absolute;
+  margin: auto;
+  top: 40%;
+  left: 10%;
+  font-size: 2.5vh;
+  font-weight: 300;
+  background-color: Transparent;
+  color: black;
+}
+
+@media all and (orientation:portrait) {
+  .Field {
+  height: calc(90vw / 177 * 100);
+  width: 90vw;
+  }
+  .Info-card {
+      width: 90vw;
+  }
+  .Score {
+      font-size: 4.5vw;
+  }
+  .Photo {
+      width: 7vw;
+      height: 7vw;
+  }
+  .Login {
+      font-size: 2vw;
+  }
+  .Ball {
+      height: calc(2/45*90vw/177*100);
+      width: calc(2/45*90vw/177*100);
+  }
+}
+
+@media all and (orientation:landscape) {
+  .Field {
+    height: 45vh;
+    width: calc(177vh * 0.45);
+  }
+  .Info-card {
+      width: calc(170vh * 0.45);
+  }
+  .Score {
+      font-size: 4.5vh;
+  }
+  .Photo {
+      width: 7vh;
+      height: 7vh;
+  }
+  .Login {
+      font-size: 1vh;
+  }
+  .Ball {
+      height: 2vh;
+      width: 2vh;
+  }
+}
+

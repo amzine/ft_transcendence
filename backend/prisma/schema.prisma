@@ -1,0 +1,190 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id     Int           @id @unique @default(autoincrement())
+  username    String        @unique
+  username42  String        @unique
+  secret      String?
+  image       String        @default("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png")
+  twoFactor   Boolean       @default(false)
+  firstTime   Boolean       @default(true)
+  bio         String?
+  first_name  String?
+  last_name   String?
+  rank        Int?
+  email       String?
+  wins        Int?          @default(0)
+  lost        Int?          @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Chat        Chat[]
+  winRate     Float?
+  score       Int?          @default(0)
+  games       Int?          @default(0)
+  gamehistory Int[]         @default([0])
+  chatMembers chatMembers[]
+  message     message[]
+  friends     Friends[]     @relation("friend")
+  User        Friends[]     @relation("user")
+  User_Dm1    Dms[]         @relation("User1")
+  User_Dm2    Dms[]         @relation("User2")
+  chatAdmins  chatAdmins[]
+  BlockedBy   Blocked[]     @relation("user")
+  Blocked     Blocked[]     @relation("Blocked")
+  BannedBy    Banned[]      @relation("BannedBy")
+  Banned      Banned[]      @relation("Banned")
+  Muted       Muted[]       @relation("Muted")
+  Player1     Game[]        @relation("player1")
+  Player2     Game[]        @relation("player2")
+}
+
+model Friends {
+  friends_id Int      @id @unique @default(autoincrement())
+  FK_user    User     @relation("user", fields: [user_id], references: [user_id]) // the user who sent the request
+  user_id    Int
+  FK_friend  User     @relation("friend", fields: [friend_id], references: [user_id]) // the user who received the request
+  friend_id  Int
+  State      String   @default("pending")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Game {
+  id Int @id @unique
+
+  FK_player1 User @relation("player1", fields: [player1], references: [user_id])
+  player1    Int
+  FK_player2 User @relation("player2", fields: [player2], references: [user_id])
+  player2    Int
+  score1     Int
+  score2     Int
+
+  startTime DateTime
+  endTime   DateTime
+  duration  Int? //in milliseconds
+}
+
+model Chat {
+  chat_id      Int           @id @unique @default(autoincrement())
+  chatName     String        @unique
+  chatBio      String?
+  chatImage    String        @default("uploads/default_Room.webp")
+  chatType     TYPE
+  GroupState   State         @default(PUBLIC)
+  Password     String?
+  FK_chatOwner User          @relation(fields: [chatOwner], references: [user_id])
+  chatOwner    Int
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  chatMembers  chatMembers[]
+  messages     message[]
+  chatAdmins   chatAdmins[]
+  Banned       Banned[]
+  Muted        Muted[]
+}
+
+model Dms {
+  dm_id     Int       @unique @default(autoincrement())
+  FK_user1  User      @relation("User1", fields: [user1_id], references: [user_id])
+  user1_id  Int
+  FK_user2  User      @relation("User2", fields: [user2_id], references: [user_id])
+  user2_id  Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  message[]
+
+  @@id([user1_id, user2_id])
+}
+
+enum State {
+  PUBLIC
+  PROTECTED
+  PRIVATE
+}
+
+enum TYPE {
+  GROUP
+  DM
+}
+
+model chatMembers {
+  chatMember_id Int      @unique @default(autoincrement())
+  FK_chat       Chat     @relation(fields: [chat_id], references: [chat_id], onDelete: Cascade)
+  chat_id       Int
+  FK_user       User     @relation(fields: [user_id], references: [user_id])
+  user_id       Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@id([chat_id, user_id])
+}
+
+model Banned {
+  banned_id     Int      @id @unique @default(autoincrement())
+  FK_Banned     User     @relation(fields: [Banned_user], references: [username], name: "Banned")
+  Banned_user   String
+  FK_bannedBy   User     @relation(fields: [BannedBy_user], references: [username], name: "BannedBy")
+  BannedBy_user String
+  FK_BannedFrom Chat     @relation(fields: [chat_id], references: [chat_id], onDelete: Cascade)
+  chat_id       Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Muted {
+  Muted_id   Int      @unique @default(autoincrement())
+  FK_user    User     @relation(fields: [Muted_user], references: [username], name: "Muted")
+  Muted_user String
+  FK_chat    Chat     @relation(fields: [chat_id], references: [chat_id], onDelete: Cascade)
+  chat_id    Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@id([Muted_user, chat_id])
+}
+
+model chatAdmins {
+  chatAdmin_id Int      @unique @default(autoincrement())
+  FK_chat      Chat     @relation(fields: [chat_id], references: [chat_id], onDelete: Cascade)
+  chat_id      Int
+  FK_user      User     @relation(fields: [user_id], references: [user_id])
+  user_id      Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  @@id([chat_id, user_id])
+}
+
+model message {
+  message_id   Int      @id @unique @default(autoincrement())
+  message      String
+  FK_chat      Chat?    @relation(fields: [receiver_id], references: [chat_id], onDelete: Cascade)
+  receiver_id  Int?
+  FK_sender    User     @relation(fields: [sender_login], references: [username])
+  sender_login String
+  created_at   DateTime @default(now())
+  // 
+  FK_Dms       Dms?     @relation(fields: [Dm_id], references: [dm_id], onDelete: Cascade)
+  Dm_id        Int?
+}
+
+model Blocked {
+  blocked_id       Int      @id @unique @default(autoincrement())
+  FK_user          User     @relation(fields: [Blocker_Username], references: [username], name: "user") // the user who blocked someone
+  Blocker_Username String
+  FK_blocked       User     @relation(fields: [Blocked_Username], references: [username], name: "Blocked") // the user who got blocked
+  Blocked_Username String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+  
